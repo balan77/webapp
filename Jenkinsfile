@@ -11,16 +11,16 @@ pipeline{
         stage ("terraform_init"){
             steps{
             echo "Terraform in action --> validate"
-                dir('terraform_resources') {
-                    sh "terraform init -upgrade"
+                dir('terraform_resource') {
+                    sh "sudo terraform init -upgrade"
                 }
             }
         }
         stage ("validate"){
             steps{
                 echo "Terraform in action --> validate"
-                dir('terraform_resources') {
-                    sh "terraform validate"
+                dir('terraform_resource') {
+                    sh "sudo terraform validate"
                 }
             }
         }
@@ -28,14 +28,15 @@ pipeline{
             steps{
                 echo "Terraform plan begins..."
                 dir ("terraform_resource") {
-                sh "terraform plan -var-file prod.tfvars"
+                sh "suod terraform plan -var-file prod.tfvars"
                 }
             }
         }
         stage ("apply"){
             steps{
                 echo "Terraform Apply begins..."
-                sh "terraform apply -var-file prod.tfvars -auto-approve"
+                dir ("terraform_resource") {
+                sh "sudo terraform apply -var-file prod.tfvars -auto-approve"
                 }
             }
         
