@@ -1,9 +1,11 @@
 pipeline{
-    agent{any}
+    agent{
+        any
+        }
     stages {
         stage('Checkout') {
             steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/balan77/webapp']]])            
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/balan77/webapp.git']]])            
 
           }
         }
