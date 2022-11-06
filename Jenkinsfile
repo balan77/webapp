@@ -28,7 +28,7 @@ pipeline{
             steps{
                 echo "Terraform plan begins..."
                 dir ("terraform_resource") {
-                sh "suod terraform plan -var-file prod.tfvars"
+                sh "sudo terraform plan -var-file prod.tfvars"
                 }
             }
         }
