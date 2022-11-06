@@ -1,7 +1,6 @@
 pipeline{
-    agent{
-        agent = [any]
-        }
+    agent any
+        
     stages {
         stage('Checkout') {
             steps {
@@ -14,6 +13,7 @@ pipeline{
             echo "Terraform in action --> validate"
                 dir('terraform_resources') {
                     sh "terraform init -upgrade"
+                }
             }
         }
         stage ("validate"){
@@ -41,4 +41,3 @@ pipeline{
         
         }
     }
-}
