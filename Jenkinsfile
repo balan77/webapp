@@ -36,8 +36,9 @@ pipeline{
             steps{
                 echo "Terraform Apply begins..."
                 sh "terraform apply -var-file prod.tfvars -auto-approve"
+                }
             }
-        }
         
+        }
     }
 }
