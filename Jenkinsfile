@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        any
+        agent = [any]
         }
     stages {
         stage('Checkout') {
@@ -11,12 +11,14 @@ pipeline{
         }
         stage ("terraform_init"){
             steps{
-
+            echo "Terraform in action --> validate"
+                dir('terraform_resources') {
+                    sh "terraform init -upgrade"
             }
         }
         stage ("validate"){
             steps{
-                echo "Terraform action is --> validate"
+                echo "Terraform in action --> validate"
                 dir('terraform_resources') {
                     sh "terraform validate"
                 }
@@ -26,7 +28,7 @@ pipeline{
             steps{
                 echo "Terraform plan begins..."
                 dir ("terraform_resource") {
-                sh "terraform plan -var-file prod.tfvars -auto-approve"
+                sh "terraform plan -var-file prod.tfvars"
                 }
             }
         }
