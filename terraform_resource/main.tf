@@ -5,7 +5,7 @@ resource "aws_instance" "docker_host" {
   instance_type        = var.host_type
   user_data            = file("scripts/host_prep.sh")
   key_name             = var.instance_key
-  iam_instance_profile = var.instance_ecr_role
+  #iam_instance_profile = var.instance_ecr_role
   tags                 = var.instance_tag
   security_groups      = [aws_security_group.allow_ssh_http.name]
   # root_block_device {
